@@ -37,7 +37,7 @@ services:
       - .env
 
   celery:
-    restart: always
+    restart: unless-stopped
     build: .
     command: celery -A config worker —loglevel=info && celery -A config beat —loglevel=info
     volumes:
