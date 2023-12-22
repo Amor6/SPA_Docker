@@ -10,7 +10,7 @@ services:
   db:
     image: postgres
     env_file:
-      - .env
+      - .env.sample
     volumes:
       - pg_data:/var/lib/postgresql/data/pgdata
     ports:
@@ -34,7 +34,7 @@ services:
       db:
         condition: service_healthy
     env_file:
-      - .env
+      - .env.sample
 
   celery:
     restart: unless-stopped
