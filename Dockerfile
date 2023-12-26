@@ -1,13 +1,12 @@
-FROM python:3
+FROM python:3.11-slim
 
-WORKDIR /homework_27_1
+WORKDIR /docker_code
 
-COPY ./requirements.txt /homework_27_1/
+COPY pyproject.toml .
 
-RUN python.exe -m pip install --upgrade pip
-
-RUN pip install -r requirements.txt --no-cache-dir
+RUN pip install --upgrade pip
+RUN pip install poetry
+RUN poetry config virtualenvs.create false
+RUN poetry install --no-root
 
 COPY . .
-
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
